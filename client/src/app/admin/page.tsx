@@ -11,7 +11,10 @@ const page = () => {
       <Sidebar />
       <Card className='w-full align-middle p-4 shadow-xl bg-[#242528] my-8 mr-8 grid grid-cols-2 grid-rows-2 gap-4'>
         <LineGraph />
-        <DataTable />
+
+        <div className='col-span-2'>
+          <DataTable />
+        </div>
       </Card>
     </div>
   );

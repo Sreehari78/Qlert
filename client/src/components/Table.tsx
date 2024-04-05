@@ -32,7 +32,7 @@ const TABS = [
   },
 ];
 
-const TABLE_HEAD = ["Member", "Function", "Status", "Employed", ""];
+const TABLE_HEAD = ["Member", "Prompt", "Risk Level"];
 
 const TABLE_ROWS = [
   {
@@ -42,7 +42,6 @@ const TABLE_ROWS = [
     job: "Manager",
     org: "Organization",
     online: true,
-    date: "23/04/18",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
@@ -51,7 +50,6 @@ const TABLE_ROWS = [
     job: "Programator",
     org: "Developer",
     online: false,
-    date: "23/04/18",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
@@ -60,7 +58,6 @@ const TABLE_ROWS = [
     job: "Executive",
     org: "Projects",
     online: false,
-    date: "19/09/17",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
@@ -69,7 +66,6 @@ const TABLE_ROWS = [
     job: "Programator",
     org: "Developer",
     online: true,
-    date: "24/12/08",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
@@ -78,7 +74,6 @@ const TABLE_ROWS = [
     job: "Manager",
     org: "Executive",
     online: false,
-    date: "04/10/21",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
@@ -87,7 +82,6 @@ const TABLE_ROWS = [
     job: "Manager",
     org: "Organization",
     online: true,
-    date: "23/04/18",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
@@ -96,7 +90,6 @@ const TABLE_ROWS = [
     job: "Programator",
     org: "Developer",
     online: false,
-    date: "23/04/18",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
@@ -105,7 +98,6 @@ const TABLE_ROWS = [
     job: "Executive",
     org: "Projects",
     online: false,
-    date: "19/09/17",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
@@ -114,7 +106,6 @@ const TABLE_ROWS = [
     job: "Programator",
     org: "Developer",
     online: true,
-    date: "24/12/08",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
@@ -123,7 +114,6 @@ const TABLE_ROWS = [
     job: "Manager",
     org: "Executive",
     online: false,
-    date: "04/10/21",
   },
 ];
 
@@ -149,72 +139,62 @@ export function DataTable() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
-              ({ img, name, email, job, org, online, date }, index) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-2 border-b border-blue-gray-50";
+            {TABLE_ROWS.map(({ img, name, email, job, org, online }, index) => {
+              const isLast = index === TABLE_ROWS.length - 1;
+              const classes = isLast
+                ? "p-4"
+                : "p-2 border-b border-blue-gray-50";
 
-                return (
-                  <tr key={name}>
-                    <td className={classes}>
-                      <div className='flex items-center gap-3'>
-                        <Avatar src={img} alt={name} size='sm' />
-                        <div className='flex flex-col'>
-                          <Typography
-                            variant='small'
-                            color='blue-gray'
-                            className='font-normal text-sm'>
-                            {name}
-                          </Typography>
-                          <Typography
-                            variant='small'
-                            color='blue-gray'
-                            className='font-normal opacity-70 text-[0.7rem]'>
-                            {email}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
+              return (
+                <tr key={name}>
+                  <td className={classes}>
+                    <div className='flex items-center gap-3'>
+                      <Avatar src={img} alt={name} size='sm' />
                       <div className='flex flex-col'>
                         <Typography
                           variant='small'
                           color='blue-gray'
-                          className='font-normal'>
-                          {job}
+                          className='font-normal text-sm'>
+                          {name}
                         </Typography>
                         <Typography
                           variant='small'
                           color='blue-gray'
-                          className='font-normal opacity-70'>
-                          {org}
+                          className='font-normal opacity-70 text-[0.7rem]'>
+                          {email}
                         </Typography>
                       </div>
-                    </td>
-                    <td className={classes}>
-                      <div className='w-max'>
-                        <Chip
-                          variant='ghost'
-                          size='sm'
-                          value={online ? "online" : "offline"}
-                          color={online ? "green" : "blue-gray"}
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <div className='flex flex-col'>
                       <Typography
                         variant='small'
                         color='blue-gray'
                         className='font-normal'>
-                        {date}
+                        {job}
                       </Typography>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
+                      <Typography
+                        variant='small'
+                        color='blue-gray'
+                        className='font-normal opacity-70'>
+                        {org}
+                      </Typography>
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <div className='w-max'>
+                      <Chip
+                        variant='ghost'
+                        size='sm'
+                        value={online ? "online" : "offline"}
+                        color={online ? "green" : "blue-gray"}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>
