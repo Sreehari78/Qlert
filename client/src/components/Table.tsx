@@ -120,13 +120,13 @@ export function DataTable() {
                           <Typography
                             variant='small'
                             color='blue-gray'
-                            className='font-normal'>
+                            className='font-normal text-sm'>
                             {name}
                           </Typography>
                           <Typography
                             variant='small'
                             color='blue-gray'
-                            className='font-normal opacity-70'>
+                            className='font-normal opacity-70 text-[0.7rem]'>
                             {email}
                           </Typography>
                         </div>
@@ -165,13 +165,6 @@ export function DataTable() {
                         className='font-normal'>
                         {date}
                       </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content='Edit User'>
-                        <IconButton variant='text'>
-                          <PencilIcon className='h-4 w-4' />
-                        </IconButton>
-                      </Tooltip>
                     </td>
                   </tr>
                 );

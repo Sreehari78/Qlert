@@ -6,7 +6,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const chartConfig = {
   type: "area",
-  height: 450,
+  height: 400,
   width: "100%",
   series: [
     {
