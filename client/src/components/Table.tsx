@@ -39,85 +39,96 @@ const TABLE_ROWS = [
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
     name: "John Michael",
     email: "john@creative-tim.com",
-    job: "Manager",
-    org: "Organization",
-    online: true,
+    prompt:
+      "Could you provide the main responsibilities of the individual with this email?",
+    riskLevel: "low",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
     name: "Alexa Liras",
     email: "alexa@creative-tim.com",
-    job: "Programator",
-    org: "Developer",
-    online: false,
+    prompt: "What's the specific department that this person oversees?",
+    riskLevel: "high",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
     name: "Laurent Perrier",
     email: "laurent@creative-tim.com",
-    job: "Executive",
-    org: "Projects",
-    online: false,
+    prompt: "Can you describe the projects this person is currently leading?",
+    riskLevel: "low",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
     name: "Michael Levi",
     email: "michael@creative-tim.com",
-    job: "Programator",
-    org: "Developer",
-    online: true,
+    prompt:
+      "Please indicate the level of experience this person has in their field.",
+    riskLevel: "high",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
     name: "Richard Gran",
     email: "richard@creative-tim.com",
-    job: "Manager",
-    org: "Executive",
-    online: false,
+    prompt:
+      "What unique skills or expertise does this person bring to the team?",
+    riskLevel: "medium",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
     name: "John Michael",
     email: "john@creative-tim.com",
-    job: "Manager",
-    org: "Organization",
-    online: true,
+    prompt:
+      "Could you elaborate on the professional achievements of this individual?",
+    riskLevel: "medium",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
     name: "Alexa Liras",
     email: "alexa@creative-tim.com",
-    job: "Programator",
-    org: "Developer",
-    online: false,
+    prompt:
+      "What are the key objectives of this person's role within the organization?",
+    riskLevel: "high",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
     name: "Laurent Perrier",
     email: "laurent@creative-tim.com",
-    job: "Executive",
-    org: "Projects",
-    online: false,
+    prompt:
+      "In what capacity does this person interact with clients or stakeholders?",
+    riskLevel: "low",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
     name: "Michael Levi",
     email: "michael@creative-tim.com",
-    job: "Programator",
-    org: "Developer",
-    online: true,
+    prompt:
+      "ProgramatorCan you specify the technology stack this person specializes in?",
+    riskLevel: "low",
   },
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
     name: "Richard Gran",
     email: "richard@creative-tim.com",
-    job: "Manager",
-    org: "Executive",
-    online: false,
+    prompt:
+      "Describe any leadership roles or initiatives undertaken by this individual.",
+    riskLevel: "high",
   },
 ];
 
 export function DataTable() {
+  const colorPicker = (riskLevel: string) => {
+    switch (riskLevel) {
+      case "low":
+        return "green";
+      case "medium":
+        return "yellow";
+      case "high":
+        return "red";
+      default:
+        return "blue-gray";
+    }
+  };
+
   return (
     <Card className='h-full w-full'>
       <CardBody className='overflow-scroll px-0'>
@@ -139,62 +150,58 @@ export function DataTable() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ img, name, email, job, org, online }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
-              const classes = isLast
-                ? "p-4"
-                : "p-2 border-b border-blue-gray-50";
+            {TABLE_ROWS.map(
+              ({ img, name, email, prompt, riskLevel }, index) => {
+                const isLast = index === TABLE_ROWS.length - 1;
+                const classes = isLast
+                  ? "p-4"
+                  : "p-2 border-b border-blue-gray-50";
 
-              return (
-                <tr key={name}>
-                  <td className={classes}>
-                    <div className='flex items-center gap-3'>
-                      <Avatar src={img} alt={name} size='sm' />
+                return (
+                  <tr key={name}>
+                    <td className={classes}>
+                      <div className='flex items-center gap-3'>
+                        <Avatar src={img} alt={name} size='sm' />
+                        <div className='flex flex-col'>
+                          <Typography
+                            variant='small'
+                            color='blue-gray'
+                            className='font-normal text-sm'>
+                            {name}
+                          </Typography>
+                          <Typography
+                            variant='small'
+                            color='blue-gray'
+                            className='font-normal opacity-70 text-[0.7rem]'>
+                            {email}
+                          </Typography>
+                        </div>
+                      </div>
+                    </td>
+                    <td className={classes}>
                       <div className='flex flex-col'>
                         <Typography
                           variant='small'
                           color='blue-gray'
-                          className='font-normal text-sm'>
-                          {name}
-                        </Typography>
-                        <Typography
-                          variant='small'
-                          color='blue-gray'
-                          className='font-normal opacity-70 text-[0.7rem]'>
-                          {email}
+                          className='font-normal'>
+                          {prompt}
                         </Typography>
                       </div>
-                    </div>
-                  </td>
-                  <td className={classes}>
-                    <div className='flex flex-col'>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal'>
-                        {job}
-                      </Typography>
-                      <Typography
-                        variant='small'
-                        color='blue-gray'
-                        className='font-normal opacity-70'>
-                        {org}
-                      </Typography>
-                    </div>
-                  </td>
-                  <td className={classes}>
-                    <div className='w-max'>
-                      <Chip
-                        variant='ghost'
-                        size='sm'
-                        value={online ? "online" : "offline"}
-                        color={online ? "green" : "blue-gray"}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td className={classes}>
+                      <div className='w-max'>
+                        <Chip
+                          variant='ghost'
+                          size='sm'
+                          value={riskLevel}
+                          color={colorPicker(riskLevel)}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </table>
       </CardBody>
