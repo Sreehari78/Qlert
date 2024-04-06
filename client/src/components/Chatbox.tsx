@@ -1,11 +1,25 @@
-import {
-  Textarea,
-  Button,
-  IconButton,
-  Tooltip,
-} from "@material-tailwind/react";
+import { Textarea, IconButton, Tooltip } from "@material-tailwind/react";
+import { SetStateAction, useState } from "react";
 
-export function ChatboxTextarea() {
+interface Message {
+  sender: string;
+  message: string;
+}
+
+export function ChatboxTextarea(props: any) {
+  const [message, setMessage] = useState("");
+
+  const handleButtonClick = async () => {
+    if (message === "") return;
+    props.handleCallBack(message);
+  };
+
+  const handleMessageChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setMessage(event.target.value);
+  };
+
   return (
     <div className='flex w-full flex-row items-center gap-2 rounded-[99px] border border-gray-400/10 bg-gray-400/5 p-2'>
       <div className='flex'>
@@ -36,6 +50,7 @@ export function ChatboxTextarea() {
         resize={true}
         placeholder='Your Message'
         className='min-h-full !border-0 focus:border-transparent text-lg'
+        onChange={handleMessageChange}
         containerProps={{
           className: "grid h-full",
         }}
@@ -43,7 +58,7 @@ export function ChatboxTextarea() {
           className: "before:content-none after:content-none",
         }}
       />
-      <div>
+      <div onClick={handleButtonClick}>
         <IconButton
           variant='text'
           className='rounded-full bg-[#007fff] hover:bg-[#005dff] active:bg-[#0058b2]'>
