@@ -1,11 +1,5 @@
 "use client";
-import {
-  Card,
-  Typography,
-  List,
-  ListItem,
-  ListItemPrefix,
-} from "@material-tailwind/react";
+import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
   ShoppingBagIcon,

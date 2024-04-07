@@ -42,12 +42,9 @@ export async function GET() {
         }
     }
 */
-  const tableContents: {
-    User_ID: any;
-    Prompt: any;
-    Time_of_Prompting: any;
-    Risk_Level: any;
-    Risk_Associated: any;
+  const ruleTableContents: {
+    rule_info: any;
+    threshold_value: any;
   }[] = [];
 
   console.log("Starting...");
@@ -57,7 +54,7 @@ export async function GET() {
     console.log("Reading rows from the Table...");
     var resultSet = await poolConnection
       .request()
-      .query(`SELECT * from [dbo].[Prompts]`);
+      .query(`SELECT * from [dbo].[Rules]`);
 
     console.log(`${resultSet.recordset.length} rows returned.`);
 
@@ -69,28 +66,19 @@ export async function GET() {
     console.log("%s\t", columns.substring(0, columns.length - 2));
     // ouput row contents from default record set
     resultSet.recordset.forEach(
-      (row: {
-        User_ID: any;
-        Prompt: any;
-        Time_of_Prompting: any;
-        Risk_Level: any;
-        Risk_Associated: any;
-      }) => {
-        tableContents.push({
-          User_ID: row.User_ID,
-          Prompt: row.Prompt,
-          Time_of_Prompting: row.Time_of_Prompting,
-          Risk_Level: row.Risk_Level,
-          Risk_Associated: row.Risk_Associated,
+      (row: { rule_info: string; threshold_value: any }) => {
+        ruleTableContents.push({
+          rule_info: row.rule_info,
+          threshold_value: row.threshold_value,
         });
       }
     );
 
-    console.log(tableContents);
+    console.log(ruleTableContents);
     // close connection only when we're certain application is finished
     poolConnection.close();
   } catch (err) {
     console.error(err);
   }
-  return Response.json({ message: tableContents });
+  return Response.json({ message: ruleTableContents });
 }

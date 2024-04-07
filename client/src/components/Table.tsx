@@ -14,54 +14,7 @@ const TABLE_HEAD = [
   "Risk Associated",
 ];
 
-const TABLE_ROWS = [
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "John Michael",
-    email: "john@creative-tim.com",
-    prompt:
-      "Could you provide the main responsibilities of the individual with this email?",
-    riskLevel: "low",
-    riskAssociated: "blah blah blah",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Alexa Liras",
-    email: "alexa@creative-tim.com",
-    prompt: "What's the specific department that this person oversees?",
-    riskLevel: "high",
-    riskAssociated: "blah blah blah",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-    name: "Laurent Perrier",
-    email: "laurent@creative-tim.com",
-    prompt: "Can you describe the projects this person is currently leading?",
-    riskLevel: "low",
-    riskAssociated: "blah blah blah",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-    name: "Michael Levi",
-    email: "michael@creative-tim.com",
-    prompt:
-      "Please indicate the level of experience this person has in their field.",
-    riskLevel: "high",
-    riskAssociated: "blah blah blah",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
-    name: "Richard Gran",
-    email: "richard@creative-tim.com",
-    prompt:
-      "What unique skills or expertise does this person bring to the team?",
-    riskLevel: "medium",
-    riskAssociated: "blah blah blah",
-  },
-];
-
-export function DataTable(props: { tableData: any[] }) {
-  console.log(props.tableData);
+export function DataTable(props: { logTableData: any[] }) {
   const colorPicker = (Risk_Level: string) => {
     switch (Risk_Level) {
       case "Low":
@@ -96,7 +49,7 @@ export function DataTable(props: { tableData: any[] }) {
             </tr>
           </thead>
           <tbody>
-            {props.tableData.map(
+            {props.logTableData.map(
               (
                 {
                   img,
@@ -108,7 +61,7 @@ export function DataTable(props: { tableData: any[] }) {
                 },
                 index
               ) => {
-                const isLast = index === props.tableData.length - 1;
+                const isLast = index === props.logTableData.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-2 border-b border-blue-gray-50";

@@ -4,13 +4,28 @@ import { Sidebar } from "@/components/Sidebar";
 import React, { useEffect } from "react";
 import LineGraph from "@/components/Graph";
 import { DataTable } from "@/components/Table";
+import RuleList from "@/components/Rulelist";
+import { ChatboxTextarea } from "@/components/Chatbox";
 
 const page = () => {
-  const [data, setData] = React.useState([]);
+  const [logTableData, setLogTableData] = React.useState([]);
+  const [ruleTableData, setRuleTableData] = React.useState([]);
+  const [childData, setChildData] = React.useState<string[]>([]);
+
+  function CallBack(text: string) {
+    const data: string[] = [...childData, text];
+    setChildData(data);
+    console.log(data);
+  }
+
   useEffect(() => {
-    fetch("http://localhost:3000/api/getTable")
+    fetch("http://localhost:3000/api/getLogTable")
       .then((res) => res.json())
-      .then((data) => setData(data.message));
+      .then((data) => setLogTableData(data.message));
+
+    fetch("http://localhost:3000/api/getRuleTable")
+      .then((res) => res.json())
+      .then((data) => setRuleTableData(data.message));
   }, []);
 
   return (
@@ -18,9 +33,14 @@ const page = () => {
       <Sidebar />
       <Card className='w-full align-middle p-4 shadow-xl bg-[#242528] my-8 mr-8 grid grid-cols-2 grid-rows-2 gap-4'>
         <LineGraph />
+        <div>
+          <RuleList ruleTableData={ruleTableData} />
+
+          <ChatboxTextarea handleCallBack={CallBack} />
+        </div>
 
         <div className='col-span-2'>
-          <DataTable tableData={data} />
+          <DataTable logTableData={logTableData} />
         </div>
       </Card>
     </div>
