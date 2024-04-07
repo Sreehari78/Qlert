@@ -6,12 +6,39 @@ import { ChatboxTextarea } from "@/components/Chatbox";
 import { Chatbubble } from "@/components/Chatbubble";
 const page = () => {
   const [childData, setChildData] = React.useState<string[]>([]);
+  const [responseData, setResponseData] = React.useState("");
 
   function CallBack(text: string) {
     const data: string[] = [...childData, text];
     setChildData(data);
     console.log(data);
+    handleQdrant();
   }
+
+  const handleQdrant = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/get_response", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ messages: childData }),
+      });
+
+      // Check if the request was successful
+      if (response.ok) {
+        const jsonData = await response.json();
+        console.log(jsonData.result);
+        if (jsonData.result) {
+          setResponseData(jsonData.result);
+        }
+      } else {
+        console.error("Failed to upload");
+      }
+    } catch (error) {
+      console.error("Error during upload:", error);
+    }
+  };
 
   return (
     <div className='flex justify-between'>
@@ -26,7 +53,7 @@ const page = () => {
                     <Chatbubble message={text} />
                   </div>
                   <div className='flex justify-start'>
-                    <Chatbubble message={text} />
+                    <Chatbubble message={responseData} />
                   </div>
                 </div>
               ))
