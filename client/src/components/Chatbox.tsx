@@ -1,11 +1,6 @@
 import { Textarea, IconButton, Tooltip } from "@material-tailwind/react";
 import { SetStateAction, useState } from "react";
 
-interface Message {
-  sender: string;
-  message: string;
-}
-
 export function ChatboxTextarea(props: any) {
   const [message, setMessage] = useState("");
 
@@ -14,9 +9,9 @@ export function ChatboxTextarea(props: any) {
     props.handleCallBack(message);
   };
 
-  const handleMessageChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const handleMessageChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setMessage(event.target.value);
   };
 

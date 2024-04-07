@@ -117,7 +117,7 @@ export function DataTable(props: { tableData: any[] }) {
                   <tr key={index}>
                     <td className={classes}>
                       <div className='flex items-center gap-3'>
-                        <Avatar src={img} alt={name} size='sm' />
+                        <Avatar src={img} alt={User_ID} size='sm' />
                         <div className='flex flex-col'>
                           <Typography
                             variant='small'
