@@ -4,33 +4,44 @@ import { Sidebar } from "@/components/Sidebar";
 import React from "react";
 import { ChatboxTextarea } from "@/components/Chatbox";
 import { Chatbubble } from "@/components/Chatbubble";
+
+interface msg {
+  client: string;
+  server: string;
+}
+
 const page = () => {
-  const [childData, setChildData] = React.useState<string[]>([]);
-  const [responseData, setResponseData] = React.useState("");
+  const [childData, setChildData] = React.useState<msg[]>([]);
+  const chat: msg = { client: "", server: "" };
 
   function CallBack(text: string) {
-    const data: string[] = [...childData, text];
-    setChildData(data);
-    console.log(data);
-    handleQdrant();
+    handleQdrant(text);
   }
 
-  const handleQdrant = async () => {
+  const handleQdrant = async (input: string) => {
+    chat.client = input;
+
     try {
-      const response = await fetch("http://localhost:5000/get_response", {
+      const response = await fetch("http://127.0.0.1:5000/get_response", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ messages: childData }),
+        body: JSON.stringify({
+          messages: input,
+        }),
       });
 
-      // Check if the request was successful
       if (response.ok) {
         const jsonData = await response.json();
-        console.log(jsonData.result);
-        if (jsonData.result) {
-          setResponseData(jsonData.result);
+        console.log(jsonData.output);
+        if (jsonData.output) {
+          chat.server = jsonData.output;
+
+          const data: msg[] = [...childData, chat];
+
+          setChildData(data);
+          console.log(data);
         }
       } else {
         console.error("Failed to upload");
@@ -45,15 +56,15 @@ const page = () => {
       <Sidebar />
       <Card className='w-full max-w-[calc(100%-20rem)] p-4 shadow-xl bg-[#242528] my-8 mr-8 grid grid-cols-4 divide-gray-800 divide-x-[1px]'>
         <div className='flex flex-col justify-between col-span-3 p-4 mb-2'>
-          <div className=''>
+          <div className=' max-[70vh] overflow-y-auto'>
             {childData.length ? (
-              childData.map((text, index) => (
+              childData.map((chat, index) => (
                 <div key={index}>
                   <div className='flex justify-end'>
-                    <Chatbubble message={text} />
+                    <Chatbubble message={chat.client} />
                   </div>
                   <div className='flex justify-start'>
-                    <Chatbubble message={responseData} />
+                    <Chatbubble message={chat.server} />
                   </div>
                 </div>
               ))

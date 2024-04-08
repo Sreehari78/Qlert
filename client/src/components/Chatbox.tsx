@@ -1,18 +1,32 @@
 import { Textarea, IconButton, Tooltip } from "@material-tailwind/react";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
-export function ChatboxTextarea(props: any) {
+interface Props {
+  handleCallBack: (message: string) => void;
+}
+
+export function ChatboxTextarea(props: Props) {
   const [message, setMessage] = useState("");
 
   const handleButtonClick = async () => {
     if (message === "") return;
     props.handleCallBack(message);
+    setMessage(""); // Clear textarea after button click
   };
 
   const handleMessageChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setMessage(event.target.value);
+  };
+
+  const handleEnterPress = (
+    event: React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleButtonClick();
+    }
   };
 
   return (
@@ -44,8 +58,10 @@ export function ChatboxTextarea(props: any) {
         rows={1}
         resize={true}
         placeholder='Your Message'
-        className='min-h-full !border-0 focus:border-transparent text-lg'
+        className='min-h-full !border-0 focus:border-transparent text-lg text-white'
+        value={message}
         onChange={handleMessageChange}
+        onKeyDown={handleEnterPress}
         containerProps={{
           className: "grid h-full",
         }}
