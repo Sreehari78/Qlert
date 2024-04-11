@@ -31,8 +31,7 @@ const page = () => {
           messages: input,
         }),
       });
-      // console.log(childData[childData.length - 1].client);
-      // Check if the request was successful
+
       if (response.ok) {
         const jsonData = await response.json();
         console.log(jsonData.output);
@@ -57,7 +56,7 @@ const page = () => {
       <Sidebar />
       <Card className="w-full max-w-[calc(100%-20rem)] p-4 shadow-xl bg-[#242528] my-8 mr-8 grid grid-cols-4 divide-gray-800 divide-x-[1px]">
         <div className="flex flex-col justify-between col-span-3 p-4 mb-2">
-          <div>
+          <div className=" max-h-[70vh] overflow-y-auto">
             {childData.length ? (
               childData.map((chat, index) => (
                 <div key={index}>
