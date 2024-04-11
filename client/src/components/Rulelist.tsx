@@ -27,7 +27,7 @@ function TrashIcon() {
 
 export function RuleList(props: { ruleTableData: any[] }) {
   return (
-    <Card className='mb-4'>
+    <Card className='mb-4 overflow-y-auto max-h-[23rem]'>
       <List>
         {props.ruleTableData.map(({ rule_info, threshold_value }, index) => {
           return (

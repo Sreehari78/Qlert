@@ -56,7 +56,7 @@ export function ChatboxTextarea(props: Props) {
       </div>
       <Textarea
         rows={1}
-        resize={true}
+        // resize={true}
         placeholder='Your Message'
         className='min-h-full !border-0 focus:border-transparent text-lg text-white'
         value={message}
