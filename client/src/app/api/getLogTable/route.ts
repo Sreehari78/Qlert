@@ -15,33 +15,6 @@ const config = {
 };
 
 export async function GET() {
-  /*
-    //Use Azure VM Managed Identity to connect to the SQL database
-    const config = {
-        server: process.env["db_server"],
-        port: process.env["db_port"],
-        database: process.env["db_database"],
-        authentication: {
-            type: 'azure-active-directory-msi-vm'
-        },
-        options: {
-            encrypt: true
-        }
-    }
-
-    //Use Azure App Service Managed Identity to connect to the SQL database
-    const config = {
-        server: process.env["db_server"],
-        port: process.env["db_port"],
-        database: process.env["db_database"],
-        authentication: {
-            type: 'azure-active-directory-msi-app-service'
-        },
-        options: {
-            encrypt: true
-        }
-    }
-*/
   const logTableContents: {
     User_ID: any;
     Prompt: any;
@@ -50,24 +23,17 @@ export async function GET() {
     Risk_Associated: any;
   }[] = [];
 
-  // console.log("Starting...");
   try {
     var poolConnection = await sql.connect(config);
 
-    // console.log("Reading rows from the Table...");
     var resultSet = await poolConnection
       .request()
       .query(`SELECT * from [dbo].[Prompts]`);
 
-    // console.log(`${resultSet.recordset.length} rows returned.`);
-
-    // output column headers
     var columns = "";
     for (var column in resultSet.recordset.columns) {
       columns += column + ", ";
     }
-    // console.log("%s\t", columns.substring(0, columns.length - 2));
-    // ouput row contents from default record set
     resultSet.recordset.forEach(
       (row: {
         User_ID: any;
@@ -85,9 +51,6 @@ export async function GET() {
         });
       }
     );
-
-    // console.log(logTableContents);
-    // close connection only when we're certain application is finished
     poolConnection.close();
   } catch (err) {
     console.error(err);
