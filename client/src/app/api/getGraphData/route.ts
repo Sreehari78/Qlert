@@ -49,8 +49,6 @@ export async function GET() {
     console.error(err);
   }
 
-  //store the count of the data recieved from the api to the interface i created in sorted order of time with 30 min gap
-  let count = 0;
   let timeData: Date[] = [];
 
   for (let i = 0; i < graphData.length; i++) {
