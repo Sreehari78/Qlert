@@ -61,10 +61,16 @@ const page = () => {
               childData.map((chat, index) => (
                 <div key={index}>
                   <div className='flex justify-end'>
-                    <Chatbubble message={chat.client} />
+                    <Chatbubble
+                      message={chat.client}
+                      borderRadius='rounded-l-2xl rounded-b-2xl'
+                    />
                   </div>
-                  <div className='flex justify-start'>
-                    <Chatbubble message={chat.server} />
+                  <div className='flex justify-start '>
+                    <Chatbubble
+                      message={chat.server}
+                      borderRadius='rounded-r-2xl rounded-b-2xl'
+                    />
                   </div>
                 </div>
               ))
