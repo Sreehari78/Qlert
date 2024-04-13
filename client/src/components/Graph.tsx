@@ -19,7 +19,7 @@ export default function LineGraph(props: {
     width: "100%",
     series: [
       {
-        name: "Sales",
+        name: "Violations",
         data: values,
       },
     ],

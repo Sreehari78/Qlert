@@ -28,7 +28,7 @@ export async function GET() {
 
     var resultSet = await poolConnection
       .request()
-      .query(`SELECT * from [dbo].[Prompts]`);
+      .query(`SELECT * from [dbo].[Prompts] order by Time_of_Prompting desc`);
 
     var columns = "";
     for (var column in resultSet.recordset.columns) {

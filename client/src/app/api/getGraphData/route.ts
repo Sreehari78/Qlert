@@ -22,7 +22,7 @@ export async function GET() {
   const currentMinute: number = endDate.getMinutes();
 
   const startTime: Date = endDate;
-  startTime.setHours(currentHour - 10);
+  startTime.setHours(currentHour - 9);
   startTime.setMinutes(currentMinute < 30 ? 0 : 30);
 
   let graphData: { Time_of_Prompting: any }[] = [];
@@ -58,13 +58,16 @@ export async function GET() {
     timeData.push(givenTime);
   }
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 1; i <= 10; i++) {
     let bufferTime = startTime;
+
     graphContents[
-      `${bufferTime.getHours() + i}:${bufferTime.getMinutes()}`
+      `${(bufferTime.getHours() + i) % 24}:${bufferTime.getMinutes() % 60}`
     ] = 0;
     graphContents[
-      `${bufferTime.getHours() + i}:${bufferTime.getMinutes() + 30}`
+      `${(bufferTime.getHours() + i) % 24}:${
+        (bufferTime.getMinutes() + 30) % 60
+      }`
     ] = 0;
   }
 
@@ -77,11 +80,10 @@ export async function GET() {
     minute < 30 ? (nextMinute = 30) : (nextMinute = 0);
 
     minute < 30
-      ? (graphContents[`${hour}:${minute}`] =
-          graphContents[`${hour}:${minute}`] + 1)
-      : (graphContents[`${hour}:${nextMinute}`] =
-          graphContents[`${hour}:${nextMinute}`] + 1);
+      ? (graphContents[`${hour % 24}:${minute % 60}`] =
+          graphContents[`${hour % 24}:${minute % 60}`] + 1)
+      : (graphContents[`${hour % 24}:${nextMinute % 60}`] =
+          graphContents[`${hour % 24}:${nextMinute % 60}`] + 1);
   }
-
   return Response.json({ graphData: graphContents });
 }

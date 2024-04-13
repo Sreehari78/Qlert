@@ -25,27 +25,37 @@ function TrashIcon() {
   );
 }
 
-export function RuleList(props: { ruleTableData: any[] }) {
+export function RuleList(props: {
+  ruleTableData: any[];
+  onDelete: (index: number) => void;
+}) {
+  const handleDelete = (index: number) => {
+    props.onDelete(index);
+  };
+
   return (
     <Card className='mb-4 overflow-y-auto max-h-[23rem]'>
       <List>
-        {props.ruleTableData.map(({ rule_info, threshold_value }, index) => {
+        {props.ruleTableData.map(({ id, payload }) => {
           return (
-            <ListItem key={index} className='p-0'>
+            <ListItem key={id} className='p-0'>
               <ListItemPrefix>
                 <Typography color='blue-gray' className='font-medium p-2'>
-                  {threshold_value}
+                  {payload.threshold}
                 </Typography>
               </ListItemPrefix>
               <label
                 htmlFor='vertical-list-react'
                 className='flex w-full cursor-pointer items-center px-3 py-2'>
                 <Typography color='blue-gray' className='font-medium'>
-                  {rule_info}
+                  {payload.description}
                 </Typography>
 
                 <ListItemSuffix>
-                  <IconButton variant='text' color='blue-gray'>
+                  <IconButton
+                    variant='text'
+                    color='blue-gray'
+                    onClick={() => handleDelete(id)}>
                     <TrashIcon />
                   </IconButton>
                 </ListItemSuffix>
