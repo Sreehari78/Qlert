@@ -1,11 +1,22 @@
 "use client";
 import { Card, CardBody } from "@material-tailwind/react";
 import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function LineGraph(props: {
   graphData: { [key: string]: number };
 }) {
+  const [windowHeight, setWindowHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (windowHeight < 600) setWindowHeight(400);
+    else if (windowHeight >= 600 && windowHeight < 1024) setWindowHeight(300);
+    else setWindowHeight(425);
+  }, []);
+
+  console.log(windowHeight);
+
   let xaxis: string[] = [];
   let values: number[] = [];
   for (const key in props.graphData) {
@@ -15,7 +26,7 @@ export default function LineGraph(props: {
 
   const chartConfig = {
     type: "area",
-    height: 400,
+    height: windowHeight,
     width: "100%",
     series: [
       {

@@ -6,19 +6,41 @@ import LineGraph from "@/components/Graph";
 import { DataTable } from "@/components/Table";
 import RuleList from "@/components/Rulelist";
 import { ChatboxTextarea } from "@/components/Chatbox";
+import { send } from "process";
 
 const page = () => {
   const [logTableData, setLogTableData] = React.useState([]);
   const [ruleTableData, setRuleTableData] = React.useState([]);
-  const [childData, setChildData] = React.useState<string[]>([]);
   const [graphData, setGraphData] = React.useState<{ [key: string]: number }>();
   const [deleteFlag, setDeleteFlag] = React.useState(false);
 
   function CallBack(text: string) {
-    const data: string[] = [...childData, text];
-    setChildData(data);
-    console.log(data);
+    sendText(text);
   }
+
+  const sendText = async (input: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/get_new_rule", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: input,
+        }),
+      });
+
+      if (response.ok) {
+        const jsonData = await response.json();
+        console.log(jsonData.output);
+      } else {
+        console.error("Failed to upload");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -73,7 +95,7 @@ const page = () => {
   return (
     <div className='flex justify-between gap-10 h-screen'>
       <Sidebar />
-      <Card className='w-full align-middle p-4 shadow-xl bg-[#242528] my-8 mr-8 grid grid-cols-2 grid-rows-2 gap-4'>
+      <Card className='w-full align-middle p-4 shadow-xl bg-[#242528] lg:my-8 lg:mr-8 grid grid-cols-2 grid-rows-2 gap-4'>
         <LineGraph graphData={graphData ?? {}} />
         <div>
           <RuleList ruleTableData={ruleTableData} onDelete={handleDeleteItem} />

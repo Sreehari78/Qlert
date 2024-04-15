@@ -1,6 +1,5 @@
 "use client";
 import { Textarea, IconButton, Tooltip } from "@material-tailwind/react";
-import { handleClientScriptLoad } from "next/script";
 import { useState } from "react";
 
 interface Props {
@@ -10,11 +9,12 @@ interface Props {
 export function ChatboxTextarea(props: Props) {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [addedFile, setAddedFile] = useState(false);
 
   const handleButtonClick = async () => {
     if (message === "") return;
     props.handleCallBack(message);
-    setMessage(""); // Clear textarea after button click
+    setMessage("");
   };
 
   const handleMessageChange = (
@@ -31,9 +31,36 @@ export function ChatboxTextarea(props: Props) {
       handleButtonClick();
     }
   };
+  const handleUpload = async (name: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/upload_text", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: name,
+        }),
+      });
 
-  const handleSubmit = async (event: React.FormEvent<HTMLInputElement>) => {
-    event.preventDefault();
+      if (response.ok) {
+        const jsonData = await response.json();
+        console.log(jsonData.output);
+        if (jsonData.output) {
+          console.log("success");
+        }
+      } else {
+        console.error("Failed to upload");
+      }
+    } catch (error) {
+      console.error("Error during upload:", error);
+    }
+  };
+
+  const handleSubmit = async (i: number) => {
+    console.log(file);
+    if (i % 2 == 0) setAddedFile(false);
+
     if (!file) return;
 
     try {
@@ -44,7 +71,10 @@ export function ChatboxTextarea(props: Props) {
         method: "POST",
         body: data,
       });
-      if (res.ok) console.log("File uploaded");
+      if (res.ok) {
+        console.log("File uploaded");
+        handleUpload(file.name);
+      }
     } catch (error: any) {
       console.error("error");
     }
@@ -53,41 +83,45 @@ export function ChatboxTextarea(props: Props) {
   return (
     <div className='flex w-full flex-row items-center gap-2 rounded-[99px] border border-gray-400/10 bg-gray-400/5 p-2'>
       <div className='flex'>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='file'
-            id='file'
-            onChange={(event) => {
-              setFile(event.target.files?.item(0) ?? null);
-            }}
-          />
-          <input type='submit' value='upload' />
-          <Tooltip
-            content='Attach'
-            animate={{
-              mount: { scale: 1, y: 0 },
-              unmount: { scale: 0, y: 25 },
-            }}>
-            <IconButton variant='text' className='rounded-full'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='24'
-                height='24'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='gray'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'>
-                <path d='M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48'></path>
-              </svg>
-            </IconButton>
-          </Tooltip>
-        </form>
+        <Tooltip
+          content='Attach'
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0, y: 25 },
+          }}>
+          <IconButton variant='text' className='rounded-full'>
+            <label htmlFor='file'>
+              <form>
+                <input
+                  hidden
+                  type='file'
+                  id='file'
+                  onChange={(event) => {
+                    setFile(event.target.files![0]);
+                    setAddedFile(true);
+                    handleSubmit(1);
+                  }}
+                />
+                {addedFile && handleSubmit(2)}
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='gray'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'>
+                  <path d='M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48'></path>
+                </svg>
+              </form>
+            </label>
+          </IconButton>
+        </Tooltip>
       </div>
       <Textarea
         rows={1}
-        // resize={true}
         placeholder='Your Message'
         className='min-h-full !border-0 focus:border-transparent text-lg text-white'
         value={message}
