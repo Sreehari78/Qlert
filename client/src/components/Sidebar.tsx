@@ -12,52 +12,66 @@ import Image from "next/image";
 
 export function Sidebar() {
   return (
-    <Card className='h-screen w-full max-w-[18rem] p-6 shadow-xl bg-[#151619]'>
-      <div className='mb-2 p-4'>
+    <Card className="h-screen w-full max-w-[18rem] p-6 shadow-xl bg-[#151619]">
+      <div className="mb-2 p-4">
         <Image
-          src='/logo-color.svg'
+          src="/logo-color.svg"
           width={125}
           height={100}
-          alt='Qlert'
+          alt="Qlert"
           priority
         />
       </div>
-      <List className='text-[#fffdff] '>
+      <List className="text-[#fffdff] ">
         <ListItem>
           <ListItemPrefix>
-            <PresentationChartBarIcon className='h-5 w-5' />
+            <PresentationChartBarIcon className="h-8 w-8" />
           </ListItemPrefix>
-          Dashboard
+          All LLMs
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <ShoppingBagIcon className='h-5 w-5' />
+            <Image
+              src="/chatgpt-icon.svg"
+              width={30}
+              height={30}
+              alt="ChatGPT"
+            />
           </ListItemPrefix>
-          E-Commerce
+          ChatGPT
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <InboxIcon className='h-5 w-5' />
+            <Image
+              src="/google-gemini-icon.svg"
+              width={30}
+              height={30}
+              alt="ChatGPT"
+            />
           </ListItemPrefix>
-          Inbox
+          Gemini
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <UserCircleIcon className='h-5 w-5' />
+            <Image
+              src="/copilot-icon.svg"
+              width={30}
+              height={30}
+              alt="ChatGPT"
+            />
           </ListItemPrefix>
-          Profile
+          Copilot
         </ListItem>
         <ListItem>
           <ListItemPrefix>
-            <Cog6ToothIcon className='h-5 w-5' />
+            <Image
+              src="/claude-ai-icon.svg"
+              width={30}
+              height={30}
+              alt="ChatGPT"
+            />
           </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className='h-5 w-5' />
-          </ListItemPrefix>
-          Log Out
+          Calude AI
         </ListItem>
       </List>
     </Card>
