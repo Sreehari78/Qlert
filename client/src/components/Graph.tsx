@@ -10,9 +10,10 @@ export default function LineGraph(props: {
   const [windowHeight, setWindowHeight] = useState<number>(0);
 
   useEffect(() => {
-    if (windowHeight < 600) setWindowHeight(400);
-    else if (windowHeight >= 600 && windowHeight < 1024) setWindowHeight(300);
-    else setWindowHeight(425);
+    if (window.innerWidth < 350) setWindowHeight(300);
+    else if (window.innerWidth >= 350 && windowHeight < 750)
+      setWindowHeight(400);
+    else setWindowHeight(500);
   }, []);
 
   console.log(windowHeight);
@@ -105,7 +106,7 @@ export default function LineGraph(props: {
   };
   return (
     <Card>
-      <CardBody className='px-2 pb-0'>
+      <CardBody className="px-2 pb-0">
         <Chart {...chartConfig} />
       </CardBody>
     </Card>
