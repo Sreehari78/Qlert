@@ -45,7 +45,7 @@ import json
 #         )
 #         for idx, doc in enumerate(documents)
 #     ],
-#)
+# )
 
 hits = client.search(
     collection_name="Prompts",

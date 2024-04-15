@@ -15,8 +15,6 @@ export default function LineGraph(props: {
     else setWindowHeight(425);
   }, []);
 
-  console.log(windowHeight);
-
   let xaxis: string[] = [];
   let values: number[] = [];
   for (const key in props.graphData) {
