@@ -39,6 +39,7 @@ export async function GET() {
     for (var column in resultSet.recordset.columns) {
       columns += column + ", ";
     }
+
     resultSet.recordset.forEach((row: { Time_of_Prompting: any }) => {
       graphData.push({
         Time_of_Prompting: row.Time_of_Prompting,
@@ -52,10 +53,9 @@ export async function GET() {
   let timeData: Date[] = [];
 
   for (let i = 0; i < graphData.length; i++) {
-    const givenTime = new Date(graphData[0].Time_of_Prompting);
+    const givenTime = new Date(graphData[i].Time_of_Prompting);
     timeData.push(givenTime);
   }
-
   for (let i = 1; i <= 10; i++) {
     let bufferTime = startTime;
 
@@ -71,17 +71,27 @@ export async function GET() {
 
   for (let i = 0; i < timeData.length; i++) {
     const bufferTime: Date = timeData[i];
+    bufferTime.setHours(bufferTime.getHours() - 5);
+    bufferTime.setMinutes(bufferTime.getMinutes() - 30);
     const hour: number = bufferTime.getHours();
     const minute: number = bufferTime.getMinutes();
-    let nextMinute: number = 0;
-
-    minute < 30 ? (nextMinute = 30) : (nextMinute = 0);
 
     minute < 30
-      ? (graphContents[`${hour % 24}:${minute % 60}`] =
-          graphContents[`${hour % 24}:${minute % 60}`] + 1)
-      : (graphContents[`${hour % 24}:${nextMinute % 60}`] =
-          graphContents[`${hour % 24}:${nextMinute % 60}`] + 1);
+      ? (graphContents[`${hour % 24}:${0}`] =
+          graphContents[`${hour % 24}:${0}`] + 1)
+      : (graphContents[`${hour % 24}:${30}`] =
+          graphContents[`${hour % 24}:${30}`] + 1);
   }
+  let sortedArray = Object.entries(graphContents);
+
+  // Sort the array by keys
+  sortedArray.sort((a, b) => {
+    if (a[0] < b[0]) return -1;
+    if (a[0] > b[0]) return 1;
+    return 0;
+  });
+
+  // Reconstruct object from sorted array
+  graphContents = Object.fromEntries(sortedArray);
   return Response.json({ graphData: graphContents });
 }

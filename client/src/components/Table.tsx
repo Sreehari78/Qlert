@@ -70,7 +70,7 @@ export function DataTable(props: { logTableData: any[] }) {
                   <tr key={index}>
                     <td className={classes}>
                       <div className='flex items-center gap-3'>
-                        <Avatar src={img} alt={User_ID} size='sm' />
+                        <Avatar src={"./user.png"} alt={User_ID} size='sm' />
                         <div className='flex flex-col'>
                           <Typography
                             variant='small'
