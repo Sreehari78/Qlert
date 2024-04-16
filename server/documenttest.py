@@ -7,7 +7,7 @@ import numpy as np
 from qdrantRules import insert_rule
 
 def summary(filename):
-    openai.api_key = "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"
+    openai.api_key = "###"
     api_url = "https://api.openai.com/v1/chat/completions"
     # Open the file with the 'utf-8' encoding
     with open(filename, "r", encoding="utf-8") as file1:
