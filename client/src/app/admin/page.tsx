@@ -6,7 +6,6 @@ import LineGraph from "@/components/Graph";
 import { DataTable } from "@/components/Table";
 import RuleList from "@/components/Rulelist";
 import { ChatboxTextarea } from "@/components/Chatbox";
-import { send } from "process";
 
 const page = () => {
   const [logTableData, setLogTableData] = React.useState([]);
@@ -95,9 +94,9 @@ const page = () => {
   };
 
   return (
-    <div className='flex justify-between gap-10 h-screen'>
+    <div className="flex justify-between gap-10 h-screen">
       <Sidebar />
-      <Card className='w-full align-middle p-4 shadow-xl bg-[#242528] lg:my-8 lg:mr-8 grid grid-cols-2 grid-rows-2 gap-4'>
+      <Card className="w-full align-middle p-4 shadow-xl bg-[#242528] lg:my-8 lg:mr-8 grid grid-cols-2 grid-rows-2 gap-4">
         <LineGraph graphData={graphData ?? {}} />
         <div>
           <RuleList ruleTableData={ruleTableData} onDelete={handleDeleteItem} />
@@ -105,7 +104,7 @@ const page = () => {
           <ChatboxTextarea handleCallBack={CallBack} attach={true} />
         </div>
 
-        <div className='col-span-2'>
+        <div className="col-span-2">
           <DataTable logTableData={logTableData} />
         </div>
       </Card>
