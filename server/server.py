@@ -66,7 +66,7 @@ def get_new_rule():
     statement = data["messages"]
     openai.api_key = "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"
     api_url = "https://api.openai.com/v1/chat/completions"
-    prompt = """Provide a threshold value between 0 and 1 for the given rule, representing the maximum tolerable level of compliance deviation of a chatbot's guidelines. Output should be in the format value:
+    prompt = """Provide a threshold value between 0 and 1 for the given rule, representing the maximum tolerable level of compliance deviation of a chatbot's guidelines. Return only a float value:
 ".
     """
 
