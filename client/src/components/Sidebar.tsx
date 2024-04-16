@@ -7,8 +7,10 @@ import {
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
+  ChatBubbleBottomCenterIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Sidebar() {
   return (
@@ -23,12 +25,22 @@ export function Sidebar() {
         />
       </div>
       <List className="text-[#fffdff] ">
-        <ListItem>
-          <ListItemPrefix>
-            <PresentationChartBarIcon className="h-8 w-8" />
-          </ListItemPrefix>
-          All LLMs
-        </ListItem>
+        <Link href="./chat">
+          <ListItem>
+            <ListItemPrefix>
+              <ChatBubbleBottomCenterIcon className="h-8 w-8" />
+            </ListItemPrefix>
+            Chat
+          </ListItem>
+        </Link>
+        <Link href="./admin">
+          <ListItem>
+            <ListItemPrefix>
+              <PresentationChartBarIcon className="h-8 w-8" />
+            </ListItemPrefix>
+            Admin
+          </ListItem>
+        </Link>
         <ListItem>
           <ListItemPrefix>
             <Image
