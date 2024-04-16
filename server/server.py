@@ -87,6 +87,10 @@ def get_new_rule():
     response = requests.post(api_url, headers=headers, data=json.dumps(payload))
     response_content = response.json()["choices"][0]["message"]["content"]
     print(response_content)
+    words = statement.split()  # Split the string into words
+    if len(words) > 0:
+        words.pop()  # Remove the last word
+        statement=' '.join(words)  # Join the words back into a string
     payload = {
     "author": "Admin1",
     "description": statement,

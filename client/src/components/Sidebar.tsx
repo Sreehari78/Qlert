@@ -9,29 +9,29 @@ import Link from "next/link";
 
 export function Sidebar() {
   return (
-    <Card className="h-screen w-full max-w-[18rem] p-6 shadow-xl bg-[#151619]">
-      <div className="mb-2 p-4">
+    <Card className='h-screen w-full max-w-[18rem] p-6 shadow-xl bg-[#151619]'>
+      <div className='mb-2 p-4'>
         <Image
-          src="/logo-color.svg"
+          src='/logo-color.svg'
           width={125}
           height={100}
-          alt="Qlert"
+          alt='Qlert'
           priority
         />
       </div>
-      <List className="text-[#fffdff] ">
-        <Link href="./chat">
+      <List className='text-[#fffdff] '>
+        <Link href='./chat'>
           <ListItem>
             <ListItemPrefix>
-              <ChatBubbleBottomCenterIcon className="h-8 w-8" />
+              <ChatBubbleBottomCenterIcon className='h-8 w-8' />
             </ListItemPrefix>
             Chat
           </ListItem>
         </Link>
-        <Link href="./admin">
+        <Link href='./admin'>
           <ListItem>
             <ListItemPrefix>
-              <PresentationChartBarIcon className="h-8 w-8" />
+              <PresentationChartBarIcon className='h-8 w-8' />
             </ListItemPrefix>
             Admin
           </ListItem>
@@ -39,10 +39,10 @@ export function Sidebar() {
         <ListItem>
           <ListItemPrefix>
             <Image
-              src="/chatgpt-icon.svg"
+              src='/chatgpt-icon.svg'
               width={30}
               height={30}
-              alt="ChatGPT"
+              alt='ChatGPT'
             />
           </ListItemPrefix>
           ChatGPT
@@ -50,10 +50,10 @@ export function Sidebar() {
         <ListItem>
           <ListItemPrefix>
             <Image
-              src="/google-gemini-icon.svg"
+              src='/google-gemini-icon.svg'
               width={30}
               height={30}
-              alt="ChatGPT"
+              alt='ChatGPT'
             />
           </ListItemPrefix>
           Gemini
@@ -61,10 +61,10 @@ export function Sidebar() {
         <ListItem>
           <ListItemPrefix>
             <Image
-              src="/copilot-icon.svg"
+              src='/copilot-icon.svg'
               width={30}
               height={30}
-              alt="ChatGPT"
+              alt='ChatGPT'
             />
           </ListItemPrefix>
           Copilot
@@ -72,10 +72,10 @@ export function Sidebar() {
         <ListItem>
           <ListItemPrefix>
             <Image
-              src="/claude-ai-icon.svg"
+              src='/claude-ai-icon.svg'
               width={30}
               height={30}
-              alt="ChatGPT"
+              alt='ChatGPT'
             />
           </ListItemPrefix>
           Calude AI
