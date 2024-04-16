@@ -12,10 +12,10 @@ from documenttest import summary
 from qdrantRules import insert_rule
 
 client = QdrantClient(
-    url="https://e343766d-2df4-4ea9-aa13-000d153fdad6.us-east4-0.gcp.cloud.qdrant.io",
-    api_key="izwQ7y1tkXJ9OYh7EAbBW3evsmgsQmwNGkoe5HoZ9Hohb-ES1zyX8A",
+    url="###",
+    api_key="###",
 )
-openai.api_key = "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"
+openai.api_key = "###"
 api_url = "https://api.openai.com/v1/chat/completions"
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ def process_text():
 @app.route("/get_rules", methods=["GET"])
 def get_rules():
     from qdrant_client import QdrantClient
-    client = QdrantClient(url="https://e343766d-2df4-4ea9-aa13-000d153fdad6.us-east4-0.gcp.cloud.qdrant.io", api_key="izwQ7y1tkXJ9OYh7EAbBW3evsmgsQmwNGkoe5HoZ9Hohb-ES1zyX8A")
+    client = QdrantClient(url="###", api_key="###")
 
     output = client.scroll(
         collection_name="Prompts",
@@ -64,7 +64,7 @@ def get_rules():
 def get_new_rule():
     data = request.get_json()
     statement = data["messages"]
-    openai.api_key = "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"
+    openai.api_key = "###"
     api_url = "https://api.openai.com/v1/chat/completions"
     prompt = """Provide a threshold value between 0 and 1 for the given rule, representing the maximum tolerable level of compliance deviation of a chatbot's guidelines. Return only a float value:
 ".
