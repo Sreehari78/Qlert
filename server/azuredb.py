@@ -3,8 +3,8 @@ from datetime import datetime
 
 server = "qlert.database.windows.net"
 database = "Records"
-username = "sreehariadmin"
-password = "cetrion123#"
+username = "###"
+password = "###"
 driver = "{ODBC Driver 17 for SQL Server}"
 port = 1433
 
