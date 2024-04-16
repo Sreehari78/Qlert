@@ -53,7 +53,11 @@ The final result of Qlert is a robust and scalable platform that promotes respon
 
 ## Demo
 
-<video controls src="https://github.com/Sreehari78/Qlert/blob/main/assets/Qlert_demo.mp4" title="assets\Qlert_demo.mp4"></video>
+
+
+https://github.com/Sreehari78/Qlert/assets/98447111/abd98a50-b68d-4601-846c-882acc68c579
+
+
 
 ## Installation
 
