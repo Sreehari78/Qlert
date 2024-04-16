@@ -2,11 +2,6 @@
 import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
   ChatBubbleBottomCenterIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
