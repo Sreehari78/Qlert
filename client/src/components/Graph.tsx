@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardBody } from "@material-tailwind/react";
 import dynamic from "next/dynamic";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function LineGraph(props: {
@@ -10,7 +10,7 @@ export default function LineGraph(props: {
   const [windowHeight, setWindowHeight] = useState<number>(0);
 
   useEffect(() => {
-    if (window.innerWidth < 1024) setWindowHeight(350);
+    if (window.innerHeight < 1024) setWindowHeight(325);
     else setWindowHeight(400);
   }, []);
 
@@ -102,7 +102,7 @@ export default function LineGraph(props: {
   };
   return (
     <Card>
-      <CardBody className='px-2 pb-0'>
+      <CardBody className="px-2 pb-0">
         <Chart {...chartConfig} />
       </CardBody>
     </Card>

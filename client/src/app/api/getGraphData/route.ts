@@ -86,10 +86,14 @@ export async function GET() {
 
   // Sort the array by keys
   sortedArray.sort((a, b) => {
-    if (a[0] < b[0]) return -1;
-    if (a[0] > b[0]) return 1;
-    return 0;
+    const x = a[0].split(":");
+    const y = b[0].split(":");
+
+    if (x[0] < y[0]) return 1;
+    if (x[1] > y[1]) return 1;
+    return 1;
   });
+
 
   // Reconstruct object from sorted array
   graphContents = Object.fromEntries(sortedArray);
