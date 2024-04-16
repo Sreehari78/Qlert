@@ -1,6 +1,7 @@
 # Qlert: Responsible AI Adoption Platform
 
-![Banner Image](assets\banner.png)
+![logo-color](https://github.com/Sreehari78/Qlert/assets/98447111/eb97c0af-f292-4933-a616-0057d1e09121)
+
 
 ## Table of Contents
 
@@ -32,14 +33,15 @@ Below are some screenshots showcasing different features of Qlert:
 User queries trigger a similarity search on the vector DB to check for risky prompts, while output from LLM models also undergoes a similarity search. Risky prompts exceeding a threshold trigger alerts, with administrators notified via the admin dashboard. Simultaneously, users receive error responses to mitigate potential risks.
 
 - **Real-time Risk Assessment:**
-  ![Real-time Risk Assessment](assets\chat.png)
+
+![QlertScreenshot1](https://github.com/Sreehari78/Qlert/assets/98447111/c3ec87d4-dd12-4d16-ad23-e8f04d9000f1)
 
 ### Admin Dashboard
 
 Qlert provides administrators with a comprehensive admin dashboard where they can view users querying risky content, monitor real-time graphical views of risky queries, and assess prompt injection attempts. Admins also have the authority to block user access if necessary.
 
 - **Admin Dashboard:**
-  ![Admin Dashboard](assets\admin.png)
+![QlertScreenshot2](https://github.com/Sreehari78/Qlert/assets/98447111/e97dc315-8a6f-4660-b2f6-15ae3a8f628f)
 
 ## Applications
 
