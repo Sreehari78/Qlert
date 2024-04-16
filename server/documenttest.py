@@ -46,7 +46,7 @@ def summary(filename):
         print("----CHATGPT RESPONSE----")
         for i in range(0, len(rules_list), 2):
             rule = rules_list[i].split(":")[1]
-            threshold = rules_list[i + 1].split(": ")[1]
+            threshold = rules_list[i + 1]
             print(f"Rule {i + 1}: {rule}")
             print(f"Threshold: {threshold}")
             # Insert the rule into the Qdrant index

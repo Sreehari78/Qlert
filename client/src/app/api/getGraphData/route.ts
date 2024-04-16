@@ -94,7 +94,6 @@ export async function GET() {
     return 1;
   });
 
-
   // Reconstruct object from sorted array
   graphContents = Object.fromEntries(sortedArray);
   return Response.json({ graphData: graphContents });

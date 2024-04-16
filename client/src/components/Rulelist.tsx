@@ -1,3 +1,4 @@
+// Importing necessary components from the Material Tailwind library
 import React from "react";
 import {
   Typography,
@@ -9,8 +10,10 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 
+// Function component for the Trash Icon
 function TrashIcon() {
   return (
+    // SVG for the trash icon
     <svg
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
@@ -25,21 +28,27 @@ function TrashIcon() {
   );
 }
 
+// Function component for the Rule List
 export function RuleList(props: {
   ruleTableData: any[];
-  onDelete: (index: number) => void;
+  onDelete: (index: string) => void;
 }) {
-  const handleDelete = (index: number) => {
+  // Function to handle the deletion of a rule
+  const handleDelete = (index: string) => {
     props.onDelete(index);
   };
 
+  // Render the component
   return (
+    // Card component to hold the list
     <Card className='mb-4 overflow-y-auto max-h-[23rem]'>
       <List>
+        {/* Mapping over the ruleTableData to create a list item for each rule */}
         {props.ruleTableData.map(({ id, payload }) => {
           return (
             <ListItem key={id} className='p-0'>
               <ListItemPrefix>
+                {/* Display the threshold of the rule */}
                 <Typography color='blue-gray' className='font-medium p-2'>
                   {payload.threshold}
                 </Typography>
@@ -47,11 +56,13 @@ export function RuleList(props: {
               <label
                 htmlFor='vertical-list-react'
                 className='flex w-full cursor-pointer items-center px-3 py-2'>
+                {/* Display the description of the rule */}
                 <Typography color='blue-gray' className='font-medium'>
                   {payload.description}
                 </Typography>
 
                 <ListItemSuffix>
+                  {/* Button to delete the rule */}
                   <IconButton
                     variant='text'
                     color='blue-gray'
@@ -68,4 +79,5 @@ export function RuleList(props: {
   );
 }
 
+// Export the RuleList component as default
 export default RuleList;

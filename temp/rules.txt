@@ -13,7 +13,7 @@ i.  <LIST OF APPROVED SOLUTIONS>
 c. The use of all other LLM AI solutions is strictly prohibited by the company. Any additional LLM AI solutions must be reviewed by executive management, the legal department, the technology department, and the information security department.
 2. Confidentiality & Data Privacy:
 a. Staff members must follow all applicable data privacy laws and company policies when using LLM AI. Confidential information shall never be entered into any LLM AI solutions, which includes confidential code, financial data, other trade secrets, confidential employee personally identifiable information, confidential customer personally identifiable information, or any customer data that may be constituted as trade secrets and protected by intellectual property laws.
-b. Incidents of the unintentional disclosure of confidential data to an LLM AI solution shall immediately be reported to the information security
+b. No personal details such as email,phone number, contact or other information should be displayed about a person
 
 department at <EMAIL ADDRESS> and the legal department at
 <EMAIL ADDRESS>.

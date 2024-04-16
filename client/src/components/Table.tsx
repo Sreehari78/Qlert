@@ -29,21 +29,19 @@ export function DataTable(props: { logTableData: any[] }) {
   };
 
   return (
-    <Card className="h-full w-full">
-      <CardBody className="overflow-scroll px-0">
-        <table className="w-full min-w-max table-auto text-left">
-          <thead className="top-0 sticky bg-blue-gray-200 z-10">
+    <Card className='h-full w-full'>
+      <CardBody className='overflow-scroll px-0'>
+        <table className='w-full min-w-max table-auto text-left'>
+          <thead className='top-0 sticky bg-blue-gray-200 z-10'>
             <tr>
               {TABLE_HEAD.map((head, index) => (
                 <th
                   key={index}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                >
+                  className='border-y border-blue-gray-100 bg-blue-gray-50/50 p-4'>
                   <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal leading-none opacity-70"
-                  >
+                    variant='small'
+                    color='blue-gray'
+                    className='font-normal leading-none opacity-70'>
                     {head}
                   </Typography>
                 </th>
@@ -70,64 +68,54 @@ export function DataTable(props: { logTableData: any[] }) {
                 return (
                   <tr key={index}>
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={"./user.png"} alt={User_ID} size="xs" />
-                        <div className="flex flex-col">
+                      <div className='flex items-center gap-3'>
+                        <Avatar src={"./user.png"} alt={User_ID} size='xs' />
+                        <div className='flex flex-col'>
                           <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal text-sm"
-                          >
-                            {User_ID}
-                          </Typography>
-                          {/* <Typography
                             variant='small'
                             color='blue-gray'
-                            className='font-normal opacity-70 text-[0.7rem]'>
-                            {email}
-                          </Typography> email here*/}
+                            className='font-normal text-sm'>
+                            {User_ID}
+                          </Typography>
                         </div>
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex flex-col">
+                      <div className='flex flex-col'>
                         <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'>
                           {Prompt}
                         </Typography>
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex flex-col">
+                      <div className='flex flex-col'>
                         <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'>
                           {Time_of_Prompting}
                         </Typography>
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="w-max">
+                      <div className='w-max'>
                         <Chip
-                          variant="ghost"
-                          size="sm"
+                          variant='ghost'
+                          size='sm'
                           value={Risk_Level}
                           color={colorPicker(Risk_Level)}
                         />
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex flex-col">
+                      <div className='flex flex-col'>
                         <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
+                          variant='small'
+                          color='blue-gray'
+                          className='font-normal'>
                           {Risk_Associated}
                         </Typography>
                       </div>
