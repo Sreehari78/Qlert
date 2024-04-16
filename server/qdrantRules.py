@@ -9,8 +9,8 @@ def insert_rule(payload, collection_name="Prompts"):
     # vector = np.random.rand(20)
     # # Initialize Qdrant client
     client = QdrantClient(
-        url="https://e343766d-2df4-4ea9-aa13-000d153fdad6.us-east4-0.gcp.cloud.qdrant.io",
-        api_key="izwQ7y1tkXJ9OYh7EAbBW3evsmgsQmwNGkoe5HoZ9Hohb-ES1zyX8A",
+        url="###",
+        api_key="###",
     )
     point_id = str(uuid.uuid4())
     # # Insert the statement into the collection

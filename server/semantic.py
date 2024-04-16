@@ -5,8 +5,8 @@ from azuredb import addPrompt
 
 # Initialize Qdrant client
 client = QdrantClient(
-    url="https://e343766d-2df4-4ea9-aa13-000d153fdad6.us-east4-0.gcp.cloud.qdrant.io",
-    api_key="izwQ7y1tkXJ9OYh7EAbBW3evsmgsQmwNGkoe5HoZ9Hohb-ES1zyX8A",
+    url="###",
+    api_key="###",
 )
 # Initialize SentenceTransformer encoder
 encoder = SentenceTransformer("all-MiniLM-L6-v2")
@@ -16,7 +16,7 @@ import openai
 import requests
 import json
 
-openai.api_key = "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"
+openai.api_key = "###"
 api_url = "https://api.openai.com/v1/chat/completions"
 headers = {
     "Content-Type": "application/json",
