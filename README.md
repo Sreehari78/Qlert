@@ -46,7 +46,11 @@ Qlert provides administrators with a comprehensive admin dashboard where they ca
 The final result of Qlert is a robust and scalable platform that promotes responsible and ethical AI adoption within organizations. With its automatic rule generation, real-time risk assessment, and comprehensive admin controls, Qlert enhances trust, transparency, and compliance in AI usage.
 ## Demo
 
-assets\Qlert_demo.mp4
+
+
+https://github.com/Sreehari78/Qlert/assets/98447111/abd98a50-b68d-4601-846c-882acc68c579
+
+
 
 ## Installation
 Follow these steps to install Qlert on your local machine:
