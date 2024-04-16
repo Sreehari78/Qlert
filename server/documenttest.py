@@ -18,7 +18,7 @@ def summary(filename):
     message = pdf_file
 
     # Update the prompt to guide ChatGPT to provide a list of one-line statements
-    prompt = """Please summarize the provided legal document into concise one-line rules, and provide a threshold value between 0 and 1 for each rule, representing the maximum tolerable level of compliance deviation. Separate each rule and its threshold value by "//" in the format: "rule: threshold_val //".
+    prompt = """Please summarize the provided legal document into concise one-line rules, and provide a threshold value between 0 and 0.5 for each rule, representing the maximum tolerable level of compliance deviation. Separate each rule and its threshold value by "//" in the format: "rule: threshold_val //".
     """
 
 
@@ -46,7 +46,7 @@ def summary(filename):
         print("----CHATGPT RESPONSE----")
         for i in range(0, len(rules_list), 2):
             rule = rules_list[i].split(":")[1]
-            threshold = rules_list[i + 1]
+            threshold = rules_list[i + 1].split(": ")[1]
             print(f"Rule {i + 1}: {rule}")
             print(f"Threshold: {threshold}")
             # Insert the rule into the Qdrant index

@@ -6,7 +6,7 @@ const client = new QdrantClient({
 });
 
 export async function GET(req: {}) {
-  const point = parseInt(req.nextUrl.searchParams.get("point"));
+  const point = req.nextUrl.searchParams.get("point");
   console.log(point);
   try {
     const output = await client.delete("Prompts", {

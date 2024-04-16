@@ -10,7 +10,7 @@ import { send } from "process";
 
 const page = () => {
   const [logTableData, setLogTableData] = React.useState([]);
-  const [ruleTableData, setRuleTableData] = React.useState([]);
+  const [ruleTableData, setRuleTableData] = React.useState<{}>([]);
   const [graphData, setGraphData] = React.useState<{ [key: string]: number }>();
   const [deleteFlag, setDeleteFlag] = React.useState(false);
 
@@ -75,9 +75,11 @@ const page = () => {
     }
   };
 
-  const handleDeleteItem = async (id: number) => {
+  const handleDeleteItem = async (id: string) => {
     const newData = [...ruleTableData];
-    newData.splice(id, 1);
+    // delete the item from the array and update the state using the id string
+    const index = newData.findIndex((item) => item.id === id);
+    newData.splice(index, 1);
     console.log(newData);
     setRuleTableData([]);
     setRuleTableData(newData);
@@ -93,9 +95,9 @@ const page = () => {
   };
 
   return (
-    <div className="flex justify-between gap-10 h-screen">
+    <div className='flex justify-between gap-10 h-screen'>
       <Sidebar />
-      <Card className="w-full align-middle p-4 shadow-xl bg-[#242528] lg:my-8 lg:mr-8 grid grid-cols-2 grid-rows-2 gap-4">
+      <Card className='w-full align-middle p-4 shadow-xl bg-[#242528] lg:my-8 lg:mr-8 grid grid-cols-2 grid-rows-2 gap-4'>
         <LineGraph graphData={graphData ?? {}} />
         <div>
           <RuleList ruleTableData={ruleTableData} onDelete={handleDeleteItem} />
@@ -103,7 +105,7 @@ const page = () => {
           <ChatboxTextarea handleCallBack={CallBack} attach={true} />
         </div>
 
-        <div className="col-span-2">
+        <div className='col-span-2'>
           <DataTable logTableData={logTableData} />
         </div>
       </Card>

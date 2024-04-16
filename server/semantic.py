@@ -54,6 +54,7 @@ def simil_search(inputs):
             break
     if result == 1:
         outputs = "Sorry violation of rule: " + hit.payload["description"]
+        print("Alert")
         addPrompt("user420", inputs, "High", hit.payload["description"])
     else:
         response = requests.post(api_url, headers=headers, data=json.dumps(payload))
@@ -62,7 +63,10 @@ def simil_search(inputs):
         else:
             print("Error:", response.status_code)
             outputs = response.json().status_code
-        addPrompt("user420", inputs, "Low", "No significant risks.")
+        if(hit.score*0.95>threshold):
+            addPrompt("user420", inputs, "Medium", "May violate rule"+hit.payload["description"])
+        else:
+            addPrompt("user420", inputs, "Low", "No significant risks.")
     # Extract payload from hits
     print(outputs)
     # Return a list of outputs (one for each input)
