@@ -6,7 +6,7 @@ from azure.core.credentials import AzureKeyCredential
 # Authenticate the client using your key and endpoint
 def authenticate_client():
     key = os.environ.get(
-        "9085636d4d3547b982949172dfc78c3d"
+        "###"
     )  # Use the name of the environment variable, not its value
     endpoint = os.environ.get(
         "https://qlertdocumentsummarizer.cognitiveservices.azure.com/"
