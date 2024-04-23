@@ -1,0 +1,12 @@
+sentence_transformers
+flask
+flask-cors
+openai
+requests
+wget
+qdrantRules
+azuredb
+qdrant_client
+semantic
+convertapi
+documenttest
